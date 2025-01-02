@@ -109,9 +109,11 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Email: mohammed.k.aldaraji@hotmail.com
+Email: pananda@opteamix.com
 
-Project Link: [https://github.com/EzioDEVio/chatgpt-app](https://github.com/EzioDEVio/chatgpt-app)
+Project Link: [https://github.com/Pooja-789/AI-ThinkBot](https://github.com/Pooja-789/AI-ThinkBot)
 ```
 
+"# AI-ThinkBot" 
+"# AI-ThinkBot" 
 "# AI-ThinkBot" 
