@@ -18,12 +18,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#about">About Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact Us</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
@@ -31,8 +31,10 @@
     <!-- Main Content Area -->
     <div class="container mt-5">
         <div class="search-bar mb-3">
-            <input type="text" id="questionInput" class="form-control" placeholder="Ask a question...">
-            <button id="askButton" class="btn btn-primary mt-3">Ask</button>
+            <input type="text" id="textInput" class="form-control" placeholder="Text to Summarize...">
+            <p style="margin-top: 20px;"><b>OR</b></p>
+            <input type="text" id="urlInput" class="form-control" placeholder="Webpage to Summarize... ">
+            <button id="askButton" class="btn btn-primary mt-3">Submit</button>
         </div>
         <div id="answerDiv" class="border p-3 bg-light"></div>
         <button id="copyButton" class="btn btn-secondary mt-3">Copy Response</button>
