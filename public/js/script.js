@@ -2,12 +2,19 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
     const askButton = document.getElementById('askButton');
-    const questionInput = document.getElementById('questionInput');
+    // const questionInput = document.getElementById('questionInput');
     const textInput = document.getElementById('textInput');
     const urlInput = document.getElementById('urlInput');
     const answerDiv = document.getElementById('answerDiv');
     const copyButton = document.getElementById('copyButton');
 
+    textInput.addEventListener('input', function () {
+        urlInput.disabled = textInput.value.trim().length > 0;
+    });
+
+    urlInput.addEventListener('input', function () {
+        textInput.disabled = urlInput.value.trim().length > 0;
+    });
     askButton.addEventListener('click', function () {
         let prompt = textInput.value.trim();
 
@@ -18,16 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (!prompt) {
             prompt = urlInput.value.trim();
-            if (!urlPattern.test(prompt)) {
-                answerDiv.textContent = 'Please provide a valid URL.';
-                return;
-            }
         }
         if (!prompt) {
             answerDiv.textContent = 'Please provide either a text or a URL.';
             return;
         }
-
+        if (!urlPattern.test(prompt)) {
+            answerDiv.textContent = 'Please provide a valid URL.';
+            return;
+        }
         fetch('/api/query', {
             method: 'POST',
             headers: {
