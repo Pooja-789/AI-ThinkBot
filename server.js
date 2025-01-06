@@ -108,6 +108,6 @@ async function summarizeText(text) {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     // Log the API key for debugging purposes
-    console.log(`Using OpenAI API Key: ${process.env.OPENAI_API_KEY}`);
+    // console.log(`Using OpenAI API Key: ${process.env.OPENAI_API_KEY}`);
 });
 
