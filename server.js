@@ -34,7 +34,7 @@ app.post('/api/query', async (req, res) => {
     else {
         try {
             const agent = new https.Agent({
-                ca: fs.readFileSync('C:/Users/PAnanda/Project/AI Project/chatgpt-app-main/certificate.crt')
+                ca: fs.readFileSync('certificate.crt')
             });
             // Make an API call to the OpenAI chat completion endpoint
             const response = await axios.post('https://api.openai.com/v1/chat/completions', {
@@ -84,7 +84,7 @@ async function fetchArticleContent(url) {
 async function summarizeText(text) {
     const agent = new https.Agent({
         rejectUnauthorized: false,
-        ca: fs.readFileSync('C:/Users/PAnanda/Project/AI Project/chatgpt-app-main/certificate.crt')
+        ca: fs.readFileSync('certificate.crt')
     });
 
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
