@@ -8,6 +8,14 @@ const response = await client.chat.completions.create({
         { role: 'user', content: 'Summarize the content and provide me a bulleted text' },
     ],
     model: 'gpt-4o-mini'
-});
+}).catch(async (err) => {
+    if (err instanceof OpenAI.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 
 console.log(response.choices[0].message.content);
