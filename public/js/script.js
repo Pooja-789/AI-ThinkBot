@@ -15,25 +15,30 @@ document.addEventListener('DOMContentLoaded', function () {
     urlInput.addEventListener('input', function () {
         textInput.disabled = urlInput.value.trim().length > 0;
     });
-    askButton.addEventListener('click', function () {
-        let prompt = textInput.value.trim();
 
-        const urlPattern = /https?:\/\/[^\s]+/;
-        if (urlPattern.test(prompt)) {
-            answerDiv.textContent = 'Please provide valid text, not a URL.';
-            return;
-        }
-        if (!prompt) {
+    askButton.addEventListener('click', function () {
+        let prompt = textInput.value.trim(); // First, prioritize textInput
+
+        if (prompt) {
+            const urlPattern = /https?:\/\/[^\s]+/;
+            if (urlPattern.test(prompt)) {
+                answerDiv.textContent = 'Please provide valid text, not a URL.';
+                return;
+            }
+        } else {
             prompt = urlInput.value.trim();
+            if (!prompt) {
+                answerDiv.textContent = 'Please provide either a text or a URL.';
+                return;
+            }
+            const urlPattern = /https?:\/\/[^\s]+/;
+            if (!urlPattern.test(prompt)) {
+                answerDiv.textContent = 'Please provide a valid URL.';
+                return;
+            }
         }
-        if (!prompt) {
-            answerDiv.textContent = 'Please provide either a text or a URL.';
-            return;
-        }
-        if (!urlPattern.test(prompt)) {
-            answerDiv.textContent = 'Please provide a valid URL.';
-            return;
-        }
+
+        // Proceed with the fetch request if input is valid
         fetch('/api/query', {
             method: 'POST',
             headers: {
@@ -57,8 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 
-    // Event listener for the copy button
-    copyButton.addEventListener('click', function () {
+    ntListener('click', function () {
         if (answerDiv.textContent) {
             navigator.clipboard.writeText(answerDiv.textContent)
                 .then(() => {
