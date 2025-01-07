@@ -7,8 +7,42 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlInput = document.getElementById('urlInput');
     const answerDiv = document.getElementById('answerDiv');
     const copyButton = document.getElementById('copyButton');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    const progressBar = document.getElementById('progressBar');
+
+    function showProgressBar() {
+        progressBarContainer.style.display = 'block';
+        progressBar.style.width = '0%';
+        let width = 0;
+        const interval = setInterval(() => {
+            if (width >= 90) {
+                clearInterval(interval);
+            } else {
+                width += 1;
+                progressBar.style.width = `${width}%`;
+            }
+        }, 50);
+        return interval;
+    }
+
+    function hideProgressBar(interval) {
+        clearInterval(interval);
+        progressBar.style.width = '100%';
+        setTimeout(() => {
+            progressBarContainer.style.display = 'none';
+        }, 500);
+    }
 
     textInput.addEventListener('input', function () {
+        textInput.style.height = 'auto';
+        textInput.style.overflowY = 'hidden';
+        const maxHeight = 200;
+        if (textInput.scrollHeight > maxHeight) {
+            textInput.style.height = `${maxHeight}px`;
+            textInput.style.overflowY = 'scroll';
+        } else {
+            textInput.style.height = `${textInput.scrollHeight}px`;
+        }
         urlInput.disabled = textInput.value.trim().length > 0;
     });
 
@@ -37,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
         }
+        const interval = showProgressBar();
 
         // Proceed with the fetch request if input is valid
         fetch('/api/query', {
@@ -55,23 +90,23 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 console.log('Received data:', data);
                 answerDiv.textContent = data.message;
+                hideProgressBar(interval);
             })
             .catch(error => {
                 console.error('Error:', error);
                 answerDiv.textContent = 'Failed to load response. ' + error.message;
-            });
+                hideProgressBar(interval);
+            })
     });
 
-    ntListener('click', function () {
+    copyButton.addEventListener('click', function () {
         if (answerDiv.textContent) {
             navigator.clipboard.writeText(answerDiv.textContent)
                 .then(() => {
                     console.log('Text copied to clipboard');
-
                 })
                 .catch(err => {
                     console.error('Error in copying text: ', err);
-
                 });
         }
     });

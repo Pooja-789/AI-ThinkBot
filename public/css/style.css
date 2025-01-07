@@ -21,13 +21,24 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px;
-    min-height: 150px; 
-    overflow-y: auto; 
+    min-height: 450px; 
+    overflow-y: auto;
+    overflow-x: hidden; 
     resize: vertical; 
+    max-height: 450px;
 }
 
 #copyButton {
     align-self: flex-end; 
     padding: 0.375rem 0.75rem; 
     font-size: 1rem; 
+}
+#textInput {
+    overflow-y: auto;
+    max-height: 150px;
+    resize: none;
+}
+
+.text-input-container {
+    position: relative;
 }
