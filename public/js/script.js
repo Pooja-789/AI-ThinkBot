@@ -1,8 +1,5 @@
-
-// script.js
 document.addEventListener('DOMContentLoaded', function () {
     const askButton = document.getElementById('askButton');
-    // const questionInput = document.getElementById('questionInput');
     const textInput = document.getElementById('textInput');
     const urlInput = document.getElementById('urlInput');
     const answerDiv = document.getElementById('answerDiv');
@@ -89,7 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 console.log('Received data:', data);
-                answerDiv.textContent = data.message;
+                let message = data.message;
+                if (message) {
+                    const bulletPattern = /- \*\*(.*)/g;
+                    message = message.replace(bulletPattern, '<li>$1</li>');
+                    message = `<ul>${message}</ul>`;
+                }
+                answerDiv.innerHTML = message;
                 hideProgressBar(interval);
             })
             .catch(error => {
