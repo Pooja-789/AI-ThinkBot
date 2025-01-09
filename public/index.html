@@ -7,6 +7,7 @@
     <title>Opteamix</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -21,15 +22,20 @@
             <div class="col-2 px-0 border left-panel-container">
                 <div class="summarize-navbar">
                     <p class="mb-0">Summarizer</p>
+                    <i class="fa fa-bars" id="menuDisplay" style="font-size:36px"></i>
                 </div>
                 <div class="left-panel-input-container px-2">
-                    <div class=" mb-3">
-                        <p>Webpage to Summarize</p>
-                        <input type="text" id="urlInput" class="form-control" placeholder="Enter the URL...">
-                        <p style="margin-top: 20px;">Text to Summarize</p>
-                        <textarea type="text" id="textInput" class="form-control"
-                            placeholder="Enter The Text..."></textarea>
-                        <button id="askButton" class="btn btn-primary mt-3">Generate Summary</button>
+                    
+                    <div id="menu" class="my-3" >
+                        <li id="textContentMenu" class="list-group-item menu-item mb-2" data-option="text">Text
+                            Summarization <span class="menu-icon">&gt;</span></li>
+                        <li id="webpageContentMenu" class="list-group-item menu-item mb-2" data-option="webpage">Webpage
+                            Summarization <span class="menu-icon">&gt;</span></li>
+                        <li id="audioContentMenu" class="list-group-item menu-item mb-2" data-option="audio">Audio
+                            Summarization <span class="menu-icon">&gt;</span></li>
+                        <li id="imageContentMenu" class="list-group-item menu-item mb-2" data-option="image">Image
+                            Summarization <span class="menu-icon">&gt;</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -40,9 +46,21 @@
                         <div class="right-panel-title">
                             Your AI Summarizer
                         </div>
-                        <div class="right-panel-response-container">
-                            <div id="answerDiv" class="border p-3 bg-light"></div>
-                            <button id="copyButton" class="btn btn-secondary my-3">Copy Response</button>
+                        <div class="right-panel-response-container mt-2">
+                            <div id="textContent" class="content-panel">
+                                <textarea id="textInput" class="form-control mt-2"
+                                    placeholder="Enter the text..."></textarea>
+                                <button id="askButtonText" class="btn btn-primary mt-3">Generate Summary</button>
+                                <div id="answerDivText" class="border p-3 bg-light"></div>
+                                <button id="copyButtonText" class="btn btn-secondary my-3">Copy Response</button>
+                            </div>
+                            <div id="webpageContent" class="content-panel">
+                                <input type="text" id="urlInput" class="form-control mt-2"
+                                    placeholder="Enter the URL...">
+                                <button id="askButtonURL" class="btn btn-primary mt-3">Generate Summary</button>
+                                <div id="answerDivURL" class="border p-3 bg-light"></div>
+                                <button id="copyButtonURL" class="btn btn-secondary my-3">Copy Response</button>
+                            </div>
                         </div>
                     </div>
                 </div>

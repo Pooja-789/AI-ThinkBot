@@ -11,7 +11,7 @@ body {
     margin-top: 20px;
 }
 
-#answerDiv {
+#answerDivText {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -21,18 +21,53 @@ body {
     overflow-x: hidden;
     resize: vertical;
     max-height: 450px;
+    box-shadow: 0 0 5px #ccc;
+    margin-top: 40px !important ;
 }
 
-#copyButton {
+#answerDivURL {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: vertical;
+    max-height: 450px;
+    box-shadow: 0 0 5px #ccc;
+    margin-top: 40px !important ;
+}
+
+#copyButtonText {
     align-self: flex-end;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
+    border-radius: 12px ;
+    height: 45px;
+    width: auto;
+    background-color: #861fed;
+}
+
+#copyButtonURL {
+    align-self: flex-end;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 12px ;
+    height: 45px;
+    width: auto;
+    background-color: #861fed;
 }
 
 #textInput {
     overflow-y: auto;
     max-height: 150px;
     resize: none;
+    box-shadow: 0 0 5px #ccc;
+}
+
+#urlInput {
+    box-shadow: 0 0 5px #ccc;
 }
 
 .text-input-container {
@@ -47,8 +82,9 @@ body {
 .left-panel-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     border-radius: 8px;
+    box-shadow: 5px 0 5px -5px #ccc;
 }
 
 .left-panel-input-container {
@@ -56,58 +92,85 @@ body {
     flex-direction: column;
 }
 
-#askButton {
+#askButtonURL {
     height: 45px;
-    width: 100%;
-    font-size: 20px;
+    width: auto;
+    font-size: 16px;
     border-radius: 12px;
     cursor: pointer;
     border: none;
-    font-family: Helvetica;
-    background-image: linear-gradient(to right, #f00090, #861fed);
+    font-family: Arial, sans-serif;
+    background-color: #861fed;
+    /* background-image: linear-gradient(to right, #f00090, #861fed); */
+    color: #fff;
+}
+#askButtonText {
+    height: 45px;
+    width: auto;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    font-family: Arial, sans-serif;
+    background-color: #861fed;
+    /* background-image: linear-gradient(to right, #f00090, #861fed); */
     color: #fff;
 }
 
 .summarize-navbar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 10px;
     background-color: #5d67f0;
     color: white;
     font-weight: bold;
     font-size: 1.3rem;
-
+    justify-content: space-between;
 }
 
 .right-panel-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
-#copyButton {
-    background-color: #861fed;
-}
-.right-panel-title{
+
+.right-panel-title {
     font-weight: bold;
     font-size: 1.3rem;
-    color:#5d67f0;
+    color: #5d67f0;
 }
 
 .list-group-item {
     background-color: transparent !important;
-    border: none; /* Optionally remove the border */
+    border: none;
+    /* Optionally remove the border */
     display: flex;
-    justify-content: space-between; /* Align text and icon properly */
+    justify-content: space-between;
+    /* Align text and icon properly */
     align-items: center;
-    padding: 10px; /* Adjust spacing as needed */
+    padding: 10px;
+    /* Adjust spacing as needed */
 }
 
 .menu-icon {
-    margin-left: auto; /* Push the icon to the right */
-    font-weight: bold; /* Make the icon more prominent */
+    margin-left: auto;
+    /* Push the icon to the right */
+    font-weight: bold;
+    /* Make the icon more prominent */
 }
 
 .list-group-item:hover {
     cursor: pointer;
-    background-color: #f8f9fa; /* Optional hover effect */
+    background-color: #f8f9fa;
+    /* Optional hover effect */
+}
+
+.right-panel-response-container {
+    padding-top: 20px;
+}
+
+#menu {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: grey;
 }
