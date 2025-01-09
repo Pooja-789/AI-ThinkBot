@@ -13,29 +13,41 @@
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Summarizer</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <!-- Progress Bar -->
     <div id="progressBarContainer" style="height: 5px; display: none;">
         <div id="progressBar" style="height: 100%; width: 0%; background-color: gray"></div>
     </div>
+    <div class="container-fluid">
+        <div class="row summarize-container">
+            <div class="col-2 px-0 border left-panel-container">
+                <div class="summarize-navbar">
+                    <p class="mb-0">Summarizer</p>
+                </div>
+                <div class="left-panel-input-container px-2">
+                    <div class=" mb-3">
+                        <p>Webpage to Summarize</p>
+                        <input type="text" id="urlInput" class="form-control" placeholder="Enter the URL...">
+                        <p style="margin-top: 20px;">Text to Summarize</p>
+                        <textarea type="text" id="textInput" class="form-control"
+                            placeholder="Enter The Text..."></textarea>
+                        <button id="askButton" class="btn btn-primary mt-3">Generate Summary</button>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Main Content Area -->
-    <div class="container mt-5">
-        <div class="search-bar mb-3">
-            <p>Text to Summarize</p>
-            <textarea type="text" id="textInput" class="form-control" placeholder="Enter The Text..."></textarea>
-            <p style="margin-top: 20px;">Webpage to Summarize</p>
-            <textarea type="text" id="urlInput" class="form-control" placeholder="Enter the URL..."></textarea>
-            <button id="askButton" class="btn btn-primary mt-3">Submit</button>
+            <div class="col-10 px-2 pt-2 border">
+                <div class="row justify-content-center h-100">
+                    <div class="col-10 right-panel-container">
+                        <div class="right-panel-title">
+                            Your AI Summarizer
+                        </div>
+                        <div class="right-panel-response-container">
+                            <div id="answerDiv" class="border p-3 bg-light"></div>
+                            <button id="copyButton" class="btn btn-secondary my-3">Copy Response</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="answerDiv" class="border p-3 bg-light"></div>
-        <button id="copyButton" class="btn btn-secondary mt-3">Copy Response</button>
     </div>
 
     <!-- Bootstrap and jQuery Scripts -->
