@@ -27,7 +27,7 @@ app.post('/api/query', async (req, res) => {
     else {
         try {
             const summary = await summarizeResponseText(prompt, '');
-            console.log(summary)
+            //console.log(summary)
             res.json({ message: summary });
         } catch (error) {
             console.error('Error with OpenAI API:', error.response ? JSON.stringify(error.response.data, null, 2) : error.message);
