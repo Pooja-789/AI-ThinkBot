@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     textInput.addEventListener('input', function () {
         textInput.style.height = 'auto';
         textInput.style.overflowY = 'hidden';
-        const maxHeight = 200;
+        const maxHeight = 150;
         if (textInput.scrollHeight > maxHeight) {
             textInput.style.height = `${maxHeight}px`;
             textInput.style.overflowY = 'scroll';
@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', function () {
         let prompt = textInput.value.trim(); // Text input from Text Summarizer page
 
         if (prompt) {
-            const urlPattern = /https?:\/\/[^\s]+/;
-            if (urlPattern.test(prompt)) {
-                answerDivText.textContent = 'Please provide valid text, not a URL.';
-                return;
-            }
+            // const urlPattern = /https?:\/\/[^\s]+/;
+            // if (urlPattern.test(prompt)) {
+            //     answerDivText.textContent = 'Please provide valid text, not a URL.';
+            //     return;
+            // }
             const interval = showProgressBar();
             fetch('/api/query', {
                 method: 'POST',

@@ -58,7 +58,7 @@ The application's file structure:
 
 - `/public`: Static files served by the server.
 - `server.js`: Main server file handling API requests.
-- `.env`: Contains environment variables like the OpenAI API key.
+- `.env`: Contains environment variables like the OpenAI API key and NODE_TLS_REJECT_UNAUTHORIZED.
 - `.gitignore`: Specifies files to be ignored by version control.
 
 ### Installation
