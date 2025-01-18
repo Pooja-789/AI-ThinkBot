@@ -1,5 +1,6 @@
 const fs = require('fs');
 const pdf = require('pdf-parse');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 // Function to extract text from a PDF file
 async function extractPdfText(filePath) {
@@ -40,5 +41,64 @@ async function processPdf(filePath) {
   }
 }
 
+// Function to search for answers in text chunks
+function searchChunks(chunks, question) {
+  const relevantChunks = chunks.filter(chunk => 
+    chunk.toLowerCase().includes(question.toLowerCase())
+  );
+
+  if (relevantChunks.length === 0) {
+    return "I couldn't find any relevant information for your question.";
+  }
+
+  return relevantChunks.join('\n\n');
+}
+
+async function getAnswerFromGemini(extractedText, question) {
+  try {
+    // Initialize Gemini API
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+
+    const prompt = `
+      Given the following text from a PDF document, please answer the question below.
+      
+      Document text:
+      ${extractedText}
+
+      Question: ${question}
+
+      Please provide a clear and concise answer based only on the information present in the document text.
+    `;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    return response.text();
+  } catch (error) {
+    console.error('Error getting answer from Gemini:', error);
+    return "An error occurred while processing your question.";
+  }
+}
+
+// Main function to process the PDF and handle questions
+async function processPdf(filePath, question = null) {
+  try {
+    const text = await extractPdfText(filePath);
+    
+    if (question) {
+      const answer = await getAnswerFromGemini(text, question);
+      console.log('Question:', question);
+      console.log('Answer:', answer);
+      return answer;
+    }
+
+    console.log('Extracted text length:', text.length);
+    console.log('First 500 characters:', text.substring(0, 500));
+    return text;
+  } catch (error) {
+    console.error('Error processing PDF:', error);
+  }
+}
+
 // Example usage
-processPdf('C:/Users/vgaddipati/Downloads/Holiday List 2025.pdf');
+processPdf('/Users/vivekgaddipati/Downloads/HolidayList2025.pdf','which month has no holidays');
