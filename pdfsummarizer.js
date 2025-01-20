@@ -22,25 +22,6 @@ function splitIntoChunks(text, chunkSize = 1000) {
   return chunks;
 }
 
-// Main function to process the PDF
-async function processPdf(filePath) {
-  try {
-    // Step 1: Extract text from the PDF
-    const text = await extractPdfText(filePath);
-
-    // Step 2: Split the text into smaller chunks
-    const chunks = splitIntoChunks(text, 1000); // Adjust chunkSize as needed
-
-    console.log('Number of Chunks:', chunks.length);
-    console.log('First Chunk:', chunks[0]); // Example: Show the first chunk
-
-    // You can now pass these chunks for embedding or further processing
-    return chunks;
-  } catch (error) {
-    console.error('Error processing PDF:', error);
-  }
-}
-
 // Function to search for answers in text chunks
 function searchChunks(chunks, question) {
   const relevantChunks = chunks.filter(chunk => 
@@ -54,6 +35,23 @@ function searchChunks(chunks, question) {
   return relevantChunks.join('\n\n');
 }
 
+/**
+ * Function to join relevant chunks of text.
+ * 
+ * @param {Array<string>} relevantChunks - The chunks of text to be joined.
+ * @returns {string} - The joined text.
+ */
+function joinRelevantChunks(relevantChunks) {
+  return relevantChunks.join('\n\n');
+}
+
+/**
+ * Function to get an answer from Gemini based on extracted text and a question.
+ * 
+ * @param {string} extractedText - The text extracted from the PDF.
+ * @param {string} question - The question to be answered based on the extracted text.
+ * @returns {Promise<string>} - A promise that resolves to the answer from Gemini.
+ */
 async function getAnswerFromGemini(extractedText, question) {
   try {
     // Initialize Gemini API
@@ -80,11 +78,17 @@ async function getAnswerFromGemini(extractedText, question) {
   }
 }
 
-// Main function to process the PDF and handle questions
-async function processPdf(filePath, question = null) {
+/**
+ * Function to process a PDF file and optionally answer a question based on its content.
+ * 
+ * @param {string} filePath - The path to the PDF file.
+ * @param {string} [question] - An optional question to be answered based on the PDF content.
+ * @returns {Promise<string>} - A promise that resolves to the extracted text or the answer to the question.
+ */
+async function processPdf(filePath, question) {
   try {
     const text = await extractPdfText(filePath);
-    
+
     if (question) {
       const answer = await getAnswerFromGemini(text, question);
       console.log('Question:', question);
@@ -101,4 +105,4 @@ async function processPdf(filePath, question = null) {
 }
 
 // Example usage
-processPdf('/Users/vivekgaddipati/Downloads/HolidayList2025.pdf','which month has no holidays');
+processPdf('C:\\Users\\vgaddipati\\Downloads\\Holiday List 2025.pdf', 'which is the second calendar month that doesn`t have any holidays');
